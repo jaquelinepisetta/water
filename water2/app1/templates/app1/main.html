@@ -1,0 +1,35 @@
+{%  extends  "app1/index.html" %}
+{% block content %}
+
+
+<div id="Page_consulta" class="tabcontent"  style=" height:  100% ;">
+
+  <div id="map"  style=" height:  100% ; width: 70%; float:left;" >
+  </div>
+  <div id = "form"  style=" height:  100% ; width: 30%; float:right; background-color: #a6a6a6 ">
+    {% include "app1/formulario.html" %}
+    {% block add_water %}
+    {% endblock %}
+  </div>
+</div>
+
+<div id="Page_mapa" class="tabcontent">
+  <!-- <span onclick="this.parentElement.style.display='none'" class="topright">&times</span> -->
+
+  {% include "app1/apresenta.html" %}
+  {% block apresenta %}
+  {% endblock %}
+
+  <!-- <form action="/add_water" method="POST" enctype="multipart/form-data">
+   <div class="fieldWrapper">
+       {% csrf_token %}
+       {{ form.as_p }}
+
+   </div>
+
+   </div>
+   <p><input type="submit" value="Cadastrar" /></p>
+  </form> -->
+
+</div>
+{% endblock %}

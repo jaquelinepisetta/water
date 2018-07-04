@@ -1,0 +1,99 @@
+<!DOCTYPE html> {% load staticfiles %}
+<html>
+  <head>
+    <meta  charset="utf-8">
+    <title> Meu Mapa </title>
+
+    <link href="{% static 'leaflet.css' %}" type="text/css" rel="stylesheet"/>
+    <link href="{% static 'estilo.css' %}" type="text/css" rel="stylesheet"/>
+    <script src="{% static 'codigo.js' %}"></script>
+    <script src="{% static 'leaflet.js' %}"></script>
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0,
+maximum-scale=1.0, user-scalable=no" />
+<script src="{% static 'bairros.geojson' %}"></script>
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0,
+maximum-scale=1.0, user-scalable=no" />
+<script src="{% static 'hidrol.geojson' %}"></script>
+
+<!-- adiciona a biblioteca jquery -->
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+
+<!-- Dependency to Leaflet Draw -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/leaflet.draw/0.3.2/leaflet.draw.css"/>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet.draw/0.3.2/leaflet.draw.js"></script>
+
+<link type="text/css" rel="stylesheet" href="{% static 'Control.MiniMap.css' %}"/>
+<script src="{% static 'Control.MiniMap.js' %}"></script>
+
+<link type="text/css" rel="stylesheet" href="{% static 'leaflet.measurecontrol.css' %}" />
+<script src="{% static 'leaflet.measurecontrol.js' %}" ></script>
+
+<script>
+// $(function(){
+//     $("#meumapa").click(function(){
+//       $("#formulario").show();
+//       // $("#formulario").hide();
+//       alert("deu certo");
+//           });
+// });
+
+
+// function markerCoords(markerobject){
+//     google.maps.event.addListener(markerobject, 'dragend', function(evt){
+//         infoWindow.setOptions({
+//             content: '<p>Marker dropped: Current Lat: ' + evt.latLng.lat().toFixed(3) + ' Current Lng: ' + evt.latLng.lng().toFixed(3) + '</p>'
+//         });
+//         infoWindow.open(map, markerobject);
+//     });
+//
+//     google.maps.event.addListener(markerobject, 'drag', function(evt){
+//         console.log("marker is being dragged");
+//         map.setCenter(marker.position);
+//         marker.setMap(map);
+//     });
+// }
+
+</script>
+
+<head>
+<title>Mapa com JQuery</title>
+<meta http-equiv="content-type" content="text/html; charset=utf-8" />
+<script type="text/javascript" src="js/jquery-1.4.4.min.js"></script>
+<script src="http://maps.googleapis.com/maps/api/js?sensor=false" type="text/javascript"></script>
+<script type="text/javascript" src="js/gmap3.js"></script>
+</head>
+
+<body>
+</body>
+  </head>
+      <body>
+          <div id="meumapa"> </div>
+          <div id="formulario" >
+
+
+
+          <form action="inserir" method="POST" enctype="multipart/form-data" id= "form1">
+            <div class="imgcontainer">
+              <img src="{% static 'agua.png' %}" alt="Avatar" class="avatar">
+
+            </div>
+
+            <div class="formulario">
+                {% csrf_token %}
+                 <p>{{ form.nome.label_tag }}  {{ form.nome }}</p>
+                <p>{{ form.descricao.label_tag }}  {{ form.descricao }}</p>
+                <p>{{ form.problema.label_tag }}  {{ form.problema }}</p>
+                <input id="ponto" type="text" name="geojson" />
+
+            </div>
+
+            <p><input type="submit" value="Cadastrar" /></p>
+          </form>
+          </div>
+
+
+
+      </body>
+  </html>

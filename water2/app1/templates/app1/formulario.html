@@ -1,0 +1,25 @@
+{% extends "app1/index.html" %}
+{% block add_water %}
+
+{% load staticfiles %}
+<!-- <div id="form2">
+<form action="/" method="POST" enctype="multipart/form-data" id= "form1">
+  <div class="imgcontainer">
+    <img src="{% static 'agua.png' %}" alt="Avatar" class="avatar">
+
+  </div> -->
+
+  <div class="formulario">
+      {% csrf_token %}
+       <p>{{ form.nome.label_tag }}  {{ form.nome }}</p>
+      <p>{{ form.descricao.label_tag }}  {{ form.descricao }}</p>
+      <p>{{ form.problema.label_tag }}  {{ form.problema }}</p>
+      <input id="ponto" type="text" name="geojson" />
+
+  </div>
+
+  <p><input type="submit" value="Cadastrar" /></p>
+</form>
+<!-- </div> -->
+
+{% endblock %}

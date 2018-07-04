@@ -1,0 +1,33 @@
+
+{% block apresenta %}
+
+{% load staticfiles %}
+<div id="form2">
+<form action="/consulta" method="POST" enctype="multipart/form-data" id= "form2">
+  {% csrf_token %}
+
+  {% for n in img %}
+  <div class="imgcontainer">
+
+  
+
+
+
+  </div>
+
+  <div class="formulario">
+
+
+      <p>{{ n.nome.label_tag }}  {{ n.nome }}</p>
+      <p>{{ n.descricao.label_tag }}  {{ n.descricao }}</p>
+      <p>{{ n.problema.label_tag }}  {{ n.problema }}</p>
+
+
+
+  </div>
+{% endfor %}
+  <p><input type="submit" value="Cadastrar" /></p>
+</form>
+</div>
+
+{% endblock %}
