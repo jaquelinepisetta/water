@@ -8,12 +8,49 @@ window.onload = function (){
     zoomDelta: 0.5,
     minZoom: 4.5,
     maxZoom: 18
-  })
+  });
 
-  var OpenStreetMap_BlackAndWhite = L.tileLayer('http://{s}.tiles.wmflabs.org/bw-mapnik/{z}/{x}/{y}.png', {
-	maxZoom: 18,
-	attribution: '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>'
-});
+  // var wmsLayer = L.tileLayer.wms('http://localhost:8082/geoserver/cite/wms?service=WMS&version=1.1.0&request=GetMap&layers=cite:app1_water&styles=&bbox=-25.5737286355303,-49.3073272705078,-25.4201375422849,-49.2853546142578&width=768&height=330&srs=EPSG:4326&format=application/openlayers').addTo(mapa);
+
+  // var wmsLayer= L.tileLayer.wms("http://localhost:8082/geoserver/cite/wms", {
+  //        layers: 'cite:app1_water',
+  //        format: 'image/png',
+  //        transparent: true
+  //    });
+  //    mapa.addLayer(wmsLayer);
+//   var wmsLayer1 = L.tileLayer.wms('https://demo.boundlessgeo.com/geoserver/ows?', {
+//     layers: 'ne:ne'
+// }).addTo(mapa);
+var osmnovo = L.tileLayer("http://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png").addTo(mapa);
+var wmsLayer = L.tileLayer.wms('http://localhost:8082/geoserver/cite/wms?', {
+  layers: 'cite:app1_water',
+
+ transparent: 'true',
+ format: 'image/png',
+
+    maxZoom: 21,
+    opacity: 0.8
+}).addTo(mapa);
+
+var baseCartografica = {
+
+"OpenStreetMap": osmnovo
+
+
+}
+//Mapas de sobreposiçao
+var informacaoTematica = {
+"Pontos": wmsLayer
+
+}
+//Adicionar objetos ao controle de camadas
+L.control.layers(baseCartografica, informacaoTematica).addTo(mapa);
+
+
+//   var OpenStreetMap_BlackAndWhite = L.tileLayer('http://{s}.tiles.wmflabs.org/bw-mapnik/{z}/{x}/{y}.png', {
+// 	maxZoom: 18,
+// 	attribution: '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>'
+// });
 
 //6 - Popup com as coordenadas no click do usuario
 	mapa.on("click", function(evento) {
@@ -29,9 +66,9 @@ window.onload = function (){
 var OpenStreetMap2 = L.tileLayer('http://{s}.tiles.wmflabs.org/bw-mapnik/{z}/{x}/{y}.png', {
 maxZoom: 18,
 attribution: '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>'
-}).addTo(mapa);
+});
 
-var osmnovo = L.tileLayer("http://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png")
+
 
 
   //Zoom para a posiçao do usuário
@@ -66,9 +103,9 @@ L.geoJSON(hidrol, {
       fillOpacity: 1
     }
   },
-  }).addTo(mapa);
+}).addTo(mapa);
 
-var miniMap = new L.Control.MiniMap(OpenStreetMap_BlackAndWhite).addTo(mapa);
+// var miniMap = new L.Control.MiniMap(OpenStreetMap_BlackAndWhite).addTo(mapa);
 
 
 //Mapas base
